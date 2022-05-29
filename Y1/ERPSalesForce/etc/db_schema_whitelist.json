@@ -1,0 +1,24 @@
+{
+    "sales_order": {
+        "column": {
+            "order_reference_id": true
+        }
+    },
+    "y1_erp_sync_order": {
+        "column": {
+            "entity_id": true,
+            "order_id": true,
+            "email": true,
+            "order_qty": true,
+            "increment_id": true,
+            "order_reference_id": true,
+            "erp_response": true,
+            "create_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "Y1_ERP_SYNC_ORDER_ORDER_ID_SALES_ORDER_ENTITY_ID": true,
+            "Y1_ERP_SYNC_ORDER_ORDER_ID": true
+        }
+    }
+}

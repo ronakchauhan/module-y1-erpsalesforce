@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="sales_order">
+        <column xsi:type="varchar" name="order_reference_id" nullable="false" default="0" comment="ERP order reference ID" />
+    </table>
+
+    <table name="y1_erp_sync_order" resource="sales" engine="innodb" comment="ERP Sync orders">
+        <column xsi:type="int" name="entity_id" padding="18" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="order_id" padding="18" unsigned="true" nullable="false" identity="false"
+                comment="Order id"/>
+        <column xsi:type="varchar" name="email" nullable="true" length="255" comment="Email id"/>
+        <column xsi:type="int" name="order_qty" padding="18" nullable="true" comment="Number of order items"/>
+        <column xsi:type="varchar" name="increment_id" nullable="true" length="50" comment="Increment id"/>
+        <column xsi:type="varchar" name="order_reference_id" nullable="false" default="0" length="255" comment="Order Reference id"/>
+        <column xsi:type="varchar" name="erp_response" nullable="false" length="255" comment="ERP export API response" default="999"/>
+        <column xsi:type="datetime" name="create_at" nullable="true" on_update="false" default="CURRENT_TIMESTAMP" comment="Processed by ERP at"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="Y1_ERP_SYNC_ORDER_ORDER_ID_SALES_ORDER_ENTITY_ID"
+                    column="order_id" referenceTable="sales_order"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="SYNC_ORDER_ID">
+                    <column name="order_id"/>
+        </constraint>
+    </table>
+</schema>

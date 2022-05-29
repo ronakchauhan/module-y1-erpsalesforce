@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ERP_salesforce" translate="label">
+            <label>Sync Order To ERP</label>
+        </tab>
+        <section id="erp_order_sync" showInDefault="1" showInWebsite="1" showInStore="0">
+            <tab>ERP_salesforce</tab>
+            <label>Order Status Configuration</label>
+            <resource>Y1_ERPSalesForce::configuration</resource>
+            <group id="status" translate="label" sortOrder="10" showInDefault="10" showInWebsite="1"
+                   showInStore="1">
+                <label>Y1 ERP Order Status</label>
+                <field id="pending" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Order Status Export</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\Processing</source_model>
+                </field>
+                <field id="exported" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Exported</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\Processing</source_model>
+                </field>
+                <field id="failed" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Failed</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\Processing</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

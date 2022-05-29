@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Y1\ERPSalesForce\Api\Data\OrderLinkInterface" type="Y1\ERPSalesForce\Model\OrderLink"/>
+    <preference for="Y1\ERPSalesForce\Api\OrderTransmissionInterface" type="Y1\ERPSalesForce\Model\OrderTransmission"/>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="publishCommand" xsi:type="object">Y1\ERPSalesForce\Console\Command\PublishCommand</item>
+                <item name="erpTransmissionStatus" xsi:type="object">Y1\ERPSalesForce\Console\Command\TransmissionCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="order_reference_id_extension_attribute"
+                type="Y1\ERPSalesForce\Plugin\OrderAttributeRepository" />
+    </type>
+
+    <virtualType name="Y1\ERPSalesForce\Model\OrderRepository\CollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="extensionAttributesJoin" xsi:type="object">Y1\ERPSalesForce\Model\OrderRepository\CollectionProcessor\ExtensionAttributeJoinProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Sales\Model\OrderRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Y1\ERPSalesForce\Model\OrderRepository\CollectionProcessor</argument>
+        </arguments>
+    </type>
+
+</config>

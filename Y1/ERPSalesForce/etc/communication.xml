@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
+    <topic name="erpsalesforce.sync.order" request="Magento\AsynchronousOperations\Api\Data\OperationInterface">
+        <handler name="erpsalesforce.sync.order" type="Y1\ERPSalesForce\Model\SyncOrderConsumer" method="process" />
+    </topic>
+</config>

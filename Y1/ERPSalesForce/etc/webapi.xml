@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/erp_sync/items/status" method="GET">
+        <service class="Y1\ERP\Api\OrderTransmissionInterface" method="getTransmission"/>
+        <resources>
+            <resource ref="Magento_Sales::order_transmission"/>
+        </resources>
+    </route>
+</routes>
